@@ -6,8 +6,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Function to fetch activities from API
   async function fetchActivities() {
-    const res = await fetch("/activities");
-    return await res.json();
+    try {
+      const res = await fetch("/activities");
+      return await res.json();
+    } catch (error) {
+      console.error("Failed to fetch activities:", error);
+      return {};
+    }
   }
 
   function renderActivities(activities) {
